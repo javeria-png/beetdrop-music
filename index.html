@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BeatDrop — Free Music Downloads</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #13131a;
+    --card2: #1a1a24;
+    --accent: #ff3c6e;
+    --accent2: #ffb800;
+    --accent3: #00e5ff;
+    --text: #f0f0f5;
+    --muted: #6b6b80;
+    --border: #2a2a38;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(255,60,110,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0,229,255,0.05) 0%, transparent 50%);
+    animation: bgShift 12s ease-in-out infinite alternate;
+    pointer-events: none; z-index: 0;
+  }
+  @keyframes bgShift {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(2%,2%); }
+  }
+  .wrapper { position: relative; z-index: 1; }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3rem;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.7);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logo span { color: var(--accent3); -webkit-text-fill-color: var(--accent3); }
+  nav .tagline { font-size: 0.8rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
+  .hero { text-align: center; padding: 5rem 2rem 3rem; animation: fadeUp 0.8s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 40px; height: 1px; background: var(--accent); opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 0.95; letter-spacing: 3px; margin-bottom: 1.5rem;
+  }
+  .hero h1 .line1 { color: var(--text); }
+  .hero h1 .line2 {
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 1.05rem; color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 2rem; animation: fadeUp 1s 0.3s ease both; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 0.3rem; }
+  .section-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .sites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 3rem; }
+  .site-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    text-decoration: none; color: var(--text); display: block;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .site-card:hover { transform: translateY(-4px); }
+  .site-card.red:hover   { border-color: var(--accent);  box-shadow: 0 16px 40px rgba(255,60,110,0.15); }
+  .site-card.yellow:hover{ border-color: var(--accent2); box-shadow: 0 16px 40px rgba(255,184,0,0.15); }
+  .site-card.cyan:hover  { border-color: var(--accent3); box-shadow: 0 16px 40px rgba(0,229,255,0.15); }
+  .site-card.green:hover { border-color: #00e676;        box-shadow: 0 16px 40px rgba(0,230,118,0.15); }
+  .site-card.purple:hover{ border-color: #b388ff;        box-shadow: 0 16px 40px rgba(179,136,255,0.15); }
+  .site-card.orange:hover{ border-color: #ff6d00;        box-shadow: 0 16px 40px rgba(255,109,0,0.15); }
+  .card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+  .red .card-icon    { background: rgba(255,60,110,0.15); }
+  .yellow .card-icon { background: rgba(255,184,0,0.15); }
+  .cyan .card-icon   { background: rgba(0,229,255,0.15); }
+  .green .card-icon  { background: rgba(0,230,118,0.15); }
+  .purple .card-icon { background: rgba(179,136,255,0.15); }
+  .orange .card-icon { background: rgba(255,109,0,0.15); }
+  .card-name { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.15rem; }
+  .card-url { font-size: 0.75rem; color: var(--muted); }
+  .card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: 20px; font-weight: 500; text-transform: uppercase; }
+  .red .tag    { background: rgba(255,60,110,0.15);  color: var(--accent); }
+  .yellow .tag { background: rgba(255,184,0,0.15);   color: var(--accent2); }
+  .cyan .tag   { background: rgba(0,229,255,0.15);   color: var(--accent3); }
+  .green .tag  { background: rgba(0,230,118,0.15);   color: #00e676; }
+  .purple .tag { background: rgba(179,136,255,0.15); color: #b388ff; }
+  .orange .tag { background: rgba(255,109,0,0.15);   color: #ff6d00; }
+  .card-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.82rem; font-weight: 600; opacity: 0.7; transition: opacity 0.2s; }
+  .site-card:hover .card-btn { opacity: 1; }
+  .howto { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .howto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+  .step { display: flex; flex-direction: column; gap: 0.6rem; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .step-title { font-weight: 600; font-size: 0.95rem; }
+  .step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+  .notice { max-width: 1100px; margin: 0 auto 4rem; background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.2); border-radius: 14px; padding: 1.2rem 1.8rem; font-size: 0.85rem; color: var(--accent3); display: flex; align-items: flex-start; gap: 0.8rem; }
+  .notice span { flex-shrink: 0; font-size: 1.2rem; }
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; }
+  footer .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; margin-bottom: 0.5rem; }
+  .wave-deco { display: flex; align-items: center; justify-content: center; gap: 3px; margin: 1.5rem auto 0; }
+  .wave-bar { width: 3px; border-radius: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2)); animation: wave 1.2s ease-in-out infinite; }
+  .wave-bar:nth-child(1)  { height:12px; animation-delay:0s }
+  .wave-bar:nth-child(2)  { height:22px; animation-delay:0.1s }
+  .wave-bar:nth-child(3)  { height:30px; animation-delay:0.2s }
+  .wave-bar:nth-child(4)  { height:18px; animation-delay:0.3s }
+  .wave-bar:nth-child(5)  { height:28px; animation-delay:0.15s }
+  .wave-bar:nth-child(6)  { height:14px; animation-delay:0.25s }
+  .wave-bar:nth-child(7)  { height:24px; animation-delay:0.05s }
+  .wave-bar:nth-child(8)  { height:20px; animation-delay:0.35s }
+  .wave-bar:nth-child(9)  { height:32px; animation-delay:0.1s }
+  .wave-bar:nth-child(10) { height:16px; animation-delay:0.2s }
+  .wave-bar:nth-child(11) { height:26px; animation-delay:0s }
+  .wave-bar:nth-child(12) { height:10px; animation-delay:0.3s }
+  @keyframes wave {
+    0%,100% { transform: scaleY(0.4); opacity: 0.5; }
+    50%      { transform: scaleY(1);   opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="logo">Beat<span>Drop</span></div>
+    <div class="tagline">Free Legal Music</div>
+  </nav>
+  <div class="hero">
+    <div class="hero-eyebrow">100% Free &amp; Legal</div>
+    <h1>
+      <div class="line1">DOWNLOAD</div>
+      <div class="line2">FREE MUSIC</div>
+    </h1>
+    <p>Discover the best websites to download free, legal music — no copyright issues, no account needed.</p>
+    <div class="wave-deco">
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Top Download Sites</div>
+    <div class="section-sub">Click any card to open the site and start downloading</div>
+    <div class="sites-grid">
+      <a href="https://freemusicarchive.org" target="_blank" class="site-card red">
+        <div class="card-top"><div class="card-icon">🎵</div><div><div class="card-name">Free Music Archive</div><div class="card-url">freemusicarchive.org</div></div></div>
+        <div class="card-desc">Huge library of high-quality, curator-selected free music. All genres — rock, pop, hip-hop, classical. Direct MP3 downloads.</div>
+        <div class="card-tags"><span class="tag">MP3</span><span class="tag">All Genres</span><span class="tag">No Login</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+      <a href="https://soundcloud.com/discover" target="_blank" class="site-card yellow">
+        <div class="card-top"><div class="card-icon">☁️</div><div><div class="card-name">SoundCloud</div><div class="card-url">soundcloud.com</div></div></div>
+        <div class="card-desc">Millions of tracks from independent artists. Many songs are free to download directly. Best for indie, electronic &amp; new artists.</div>
+        <div class="card-tags"><span class="tag">Indie</span><span class="tag">Electronic</span><span class="tag">Free Tracks</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+      <a href="https://www.jamendo.com/start" target="_blank" class="site-card cyan">
+        <div class="card-top"><div class="card-icon">🎸</div><div><div class="card-name">Jamendo</div><div class="card-url">jamendo.com</div></div></div>
+        <div class="card-desc">500,000+ tracks from independent artists worldwide. Free personal downloads. Great for discovering global music scenes.</div>
+        <div class="card-tags"><span class="tag">World Music</span><span class="tag">500K+ Tracks</span><span class="tag">Free</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+      <a href="https://ccmixter.org" target="_blank" class="site-card green">
+        <div class="card-top"><div class="card-icon">🎛️</div><div><div class="card-name">ccMixter</div><div class="card-url">ccmixter.org</div></div></div>
+        <div class="card-desc">Community music remix site. Electronic, ambient, hip-hop beats. All Creative Commons licensed — free to download and use.</div>
+        <div class="card-tags"><span class="tag">Remixes</span><span class="tag">Electronic</span><span class="tag">CC License</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+      <a href="https://www.bensound.com/royalty-free-music" target="_blank" class="site-card purple">
+        <div class="card-top"><div class="card-icon">🎹</div><div><div class="card-name">Bensound</div><div class="card-url">bensound.com</div></div></div>
+        <div class="card-desc">Beautiful royalty-free music — cinematic, acoustic, corporate, and more. High production quality. Great for background listening.</div>
+        <div class="card-tags"><span class="tag">Cinematic</span><span class="tag">Acoustic</span><span class="tag">HQ Audio</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+      <a href="https://pixabay.com/music/" target="_blank" class="site-card orange">
+        <div class="card-top"><div class="card-icon">🔊</div><div><div class="card-name">Pixabay Music</div><div class="card-url">pixabay.com/music</div></div></div>
+        <div class="card-desc">Free music with no attribution required. Searchable by mood, genre or instrument. Instant MP3 download.</div>
+        <div class="card-tags"><span class="tag">No Credit</span><span class="tag">All Moods</span><span class="tag">Fast DL</span></div>
+        <div class="card-btn">Visit Site →</div>
+      </a>
+    </div>
+    <div class="howto">
+      <div class="section-title">How to Download</div>
+      <div class="section-sub">Simple steps to get your music for free</div>
+      <div class="howto-grid">
+        <div class="step"><div class="step-num">01</div><div class="step-title">Pick a Site</div><div class="step-desc">Click any card above to open the music site in a new tab.</div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-title">Search Song</div><div class="step-desc">Use the search bar on the site to find the song or genre you want.</div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-title">Click Download</div><div class="step-desc">Most sites have a download button. Click it to save the MP3 to your device.</div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-title">Enjoy!</div><div class="step-desc">Your music is saved! Play it offline anytime with any media player.</div></div>
+      </div>
+    </div>
+    <div class="notice">
+      <span>ℹ️</span>
+      <div>All sites listed here provide <strong>100% free and legal music</strong>. Songs are either Creative Commons licensed or released for free by their artists.</div>
+    </div>
+  </div>
+  <footer>
+    <span class="footer-logo">BeatDrop</span>
+    Made with ❤️ for music lovers &nbsp;|&nbsp; All music sources are free &amp; legal
+  </footer>
+</div>
+</body>
+</html>
