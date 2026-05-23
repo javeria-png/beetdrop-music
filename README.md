@@ -64,7 +64,7 @@
 **Javeria Khan**  
 BS Software Engineering — 4th Semester  
 📍 Timergara, Lower Dir, KPK  
-📧 javeria.khan09000@gmail.com  
+📧 javeria.stack@gmail.com  
 🐙 [github.com/javeria-png](https://github.com/javeria-png)
 
 ---
